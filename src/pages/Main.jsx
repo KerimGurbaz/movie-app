@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState, useEffect } from "react";
-import Movies from "../components/Movies";
+import Movies from "../components/movies/Movies";
 
 const Main = () => {
   const API_KEY = "34f357d9a91c3d9ccaf3fa10d802bc19";
