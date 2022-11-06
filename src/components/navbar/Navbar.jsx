@@ -66,11 +66,14 @@ export default function Navbar() {
             ) : (
               <>
                 <NavLink
+                  // onClick={() => navigate("/login")}
                   to={"/login"}
                   color="inherit"
                   style={{ color: "#fff", textDecoration: "none" }}
                 >
-                  <Button color="inherit">Login</Button>
+                  {" "}
+                  Login
+                  {/* <Button color="inherit">Login</Button> */}
                 </NavLink>
                 <NavLink
                   to={"/register"}
