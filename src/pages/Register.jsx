@@ -1,4 +1,5 @@
-import * as React from "react";
+// import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -23,7 +24,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        KerimGurbaz
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -34,6 +35,15 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
+  const [firstName, setfirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  console.log(firstName);
+  console.log(lastName);
+  console.log(email);
+  console.log(password);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -94,7 +104,9 @@ export default function Register() {
                 name="name"
                 // autoComplete="email"
                 autoFocus
+                onChange={(e) => setfirstName(e.target.value)}
               />
+
               <TextField
                 margin="normal"
                 required
@@ -104,6 +116,7 @@ export default function Register() {
                 name="lastName"
                 // autoComplete="email"
                 autoFocus
+                onChange={(e) => setLastName(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -114,6 +127,7 @@ export default function Register() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -124,6 +138,7 @@ export default function Register() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
