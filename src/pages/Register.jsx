@@ -13,6 +13,8 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createUser } from "../auth/firebase";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -39,6 +41,8 @@ export default function Register() {
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
+
   console.log(firstName);
   console.log(lastName);
   console.log(email);
@@ -47,6 +51,8 @@ export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    createUser(email, password);
+    navigate("/");
     console.log({
       email: data.get("email"),
       password: data.get("password"),
