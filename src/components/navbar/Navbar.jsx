@@ -10,6 +10,7 @@ import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import { logOut } from "../../auth/firebase";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ export default function Navbar() {
                   {currentUser.displayName}
                 </Typography>
                 <NavLink
+                  onClick={() => logOut()}
                   to={"/login"}
                   style={{ color: "#fff", textDecoration: "none" }}
                 >

@@ -13,7 +13,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavLink, useNavigate } from "react-router-dom";
-import { signIn } from "../auth/firebase";
+import { signIn, signUpProvider } from "../auth/firebase";
 
 function Copyright(props) {
   return (
@@ -52,6 +52,10 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     });
+  };
+
+  const handleProviderLogin = () => {
+    signUpProvider(navigate);
   };
 
   return (
@@ -135,6 +139,9 @@ export default function Login() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={() => {
+                  return handleProviderLogin;
+                }}
               >
                 Continue with Google
               </Button>

@@ -50,8 +50,9 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const displayName = `${firstName} ${lastName}`;
     const data = new FormData(event.currentTarget);
-    createUser(email, password, navigate);
+    createUser(email, password, navigate, displayName);
     navigate("/");
     console.log({
       email: data.get("email"),
