@@ -13,9 +13,10 @@ const Main = () => {
   const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const getData = async () => {
-    const response = await fetch(url);
+  const getData = async (API) => {
+    const response = await fetch(API);
     const movies = await response.json();
     setMovies(movies.results);
 
@@ -23,13 +24,20 @@ const Main = () => {
   };
 
   useEffect(() => {
-    getData();
+    getData(FEATURED_API);
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getData(SEARCH_API + searchTerm);
+  };
 
   return (
     <div>
       <h2>Main</h2>
       <Box
+        onChange={(e) => setSearchTerm(e.target.value)}
+        onSubmit={handleSubmit}
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "25ch" },
