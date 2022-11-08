@@ -8,11 +8,14 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
   // const currentUser = { displayName: "kerim gurbaz" };
-  const currentUser = false;
+  // const currentUser = false;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
