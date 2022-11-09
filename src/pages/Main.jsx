@@ -1,8 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Movies from "../components/movies/Movies";
+import { AuthContext } from "../context/AuthContext";
 
 const Main = () => {
   // const API_KEY = "34f357d9a91c3d9ccaf3fa10d802bc19";
@@ -14,6 +15,7 @@ const Main = () => {
 
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const { currentUser } = useContext(AuthContext);
 
   const getData = async (API) => {
     const response = await fetch(API);
@@ -29,12 +31,17 @@ const Main = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getData(SEARCH_API + searchTerm);
+    if (searchTerm && currentUser) {
+      getData(SEARCH_API + searchTerm);
+    } else if (!currentUser) {
+      alert("Please login to search a movie");
+    } else {
+      alert("Please enter a text");
+    }
   };
 
   return (
     <div>
-      <h2>Main</h2>
       <Box
         onChange={(e) => setSearchTerm(e.target.value)}
         onSubmit={handleSubmit}
